@@ -69,22 +69,24 @@ router.post('/', async (req, res) => {
 router.put('/:id', async (req, res) => {
   // update a category by its `id` value
   
-  if (req.params.id) {
+  // if (req.params.id === undefined) {
    
-    // return res.status(400).send("Missing the Id");
-  }
+  //   return res.status(400).send("Missing the Id");
+  // }
 
   // create a new category
   try {
     if (req.body) {
-      const {category_name} = req.body;
+      // const {category_name} = req.body;
       // if (category_name) {
         const result = await Category.update(
-          { 
-          "category_name": category_name,},{
+          // { 
+          // "category_name": category_name,}
+          req.body
+          ,{
          where:{
-          id:`${req.params.id}`
-         }
+          id:req.params.id,
+         },
          } );
         // The database now has "Ada" for name, but still has the default "green" for favorite color
         // await Category.save();
@@ -98,8 +100,27 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async (req, res) => {
   // delete a category by its `id` value
+  try {
+    
+        const result = await Category.destroy(
+          {
+            where:{
+              id:`${req.params.id}`
+                  }
+          });
+       
+        if(result > 0){
+          return res.status(200).json(result);
+        }
+      
+          // return res.status().
+    
+    
+  } catch (error) {
+    return res.status(500).json(error);
+  }
 });
 
 module.exports = router;
