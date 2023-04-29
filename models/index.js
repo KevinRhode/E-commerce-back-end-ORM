@@ -7,13 +7,13 @@ const ProductTag = require('./ProductTag');
 
 // Categories have many Products
 Category.hasMany(Product,{
-  foreginKey: 'id',
+  foreignKey: 'category_id',
   onDelete: 'CASCADE'
 });
 
 // Products belongsTo Category
 Product.belongsTo(Category,{
-  foreginKey:'id',
+  foreignKey:'id',
   onDelete:'CASCADE'
 });
 
