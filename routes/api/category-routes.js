@@ -66,9 +66,36 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', async (req, res) => {
   // update a category by its `id` value
   
+  if (req.params.id) {
+   
+    // return res.status(400).send("Missing the Id");
+  }
+
+  // create a new category
+  try {
+    if (req.body) {
+      const {category_name} = req.body;
+      // if (category_name) {
+        const result = await Category.update(
+          { 
+          "category_name": category_name,},{
+         where:{
+          id:`${req.params.id}`
+         }
+         } );
+        // The database now has "Ada" for name, but still has the default "green" for favorite color
+        // await Category.save();
+        // Now the database has "Ada" for name and "blue" for favorite color
+      // }      
+      return res.status(200).json(result);
+    }
+    return res.status(400).send("Missing Request Body");
+  } catch (error) {
+    return res.status(500).json(error);
+  }
 });
 
 router.delete('/:id', (req, res) => {
