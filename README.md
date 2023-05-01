@@ -67,7 +67,11 @@ type: quit
 enter
 
 To Seed
+npm run seed
+or
+node seeds/index.js
 
+Start Program:
 npm start
 
 this will start the program, and can begin testing the endpoints
