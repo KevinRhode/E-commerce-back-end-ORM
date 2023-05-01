@@ -56,23 +56,23 @@ THEN I am able to successfully create, update, and delete data in my database
 
 ## Usage
 
-Navigate to index.js file location in terminal  
-mysql -u root -p
-enter the password you set up
+Navigate to index.js file location in terminal    
+mysql -u root -p  
+enter the password you set up  
 
-once in mysql
-SOURCE db/schema.sql;
-enter
-type: quit
-enter
+once in mysql  
+SOURCE db/schema.sql;  
+enter  
+type: quit  
+enter  
 
-To Seed
-npm run seed
-or
-node seeds/index.js
+To Seed  
+npm run seed  
+or  
+node seeds/index.js  
 
-Start Program:
-npm start
+Start Program:  
+npm start  
 
 this will start the program, and can begin testing the endpoints
 
